@@ -1,0 +1,105 @@
+{
+  "589230289167843338": {
+    "casinophil": {
+      "tokens": 8301,
+      "dailycooldown": 1672949192.6555095
+    },
+    "dm": {
+      "status": "optout"
+    }
+  },
+  "875873796014350348": {
+    "casinophil": {
+      "tokens": 10000,
+      "dailycooldown": 0.0
+    },
+    "dm": {
+      "status": "optout"
+    }
+  },
+  "847290743437131796": {
+    "casinophil": {
+      "tokens": 0,
+      "dailycooldown": 1672614410.9662666
+    },
+    "dm": {
+      "status": "optout"
+    }
+  },
+  "405509160596406284": {
+    "casinophil": {
+      "tokens": 6000,
+      "dailycooldown": 1672777289.5260096
+    },
+    "dm": {
+      "status": "optout"
+    }
+  },
+  "518269599028871172": {
+    "casinophil": {
+      "tokens": 11999,
+      "dailycooldown": 1672603358.8487132
+    },
+    "dm": {
+      "status": "optout"
+    }
+  },
+  "283041863995359234": {
+    "casinophil": {
+      "tokens": 10100,
+      "dailycooldown": 1672689019.4649005
+    },
+    "dm": {
+      "status": "optout"
+    }
+  },
+  "889276544760021062": {
+    "dm": {
+      "status": "optout"
+    },
+    "casinophil": {
+      "tokens": 1100,
+      "dailycooldown": 0
+    }
+  },
+  "1058217021269090305": {
+    "dm": {
+      "status": "optout"
+    }
+  },
+  "665363620535992320": {
+    "dm": {
+      "status": "optout"
+    }
+  },
+  "887909509681532990": {
+    "dm": {
+      "status": "optout"
+    }
+  },
+  "431920152225775627": {
+    "dm": {
+      "status": "optout"
+    }
+  },
+  "1058619581264044042": {
+    "dm": {
+      "status": "optout"
+    }
+  },
+  "1022993363475116082": {
+    "dm": {
+      "status": "optout"
+    }
+  },
+  "270904126974590976": {
+    "dm": {
+      "status": "optout"
+    }
+  },
+  "235148962103951360": {
+    "dm": {
+      "status": "optout"
+    }
+  }
+}
