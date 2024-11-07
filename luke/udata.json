@@ -1,1 +1,24 @@
-{}
+{
+  "589230289167843338": {
+    "casinophil": {
+      "tokens": 1700,
+      "dailycooldown": 1708910369.0769937
+    },
+    "inventory": [],
+    "reminders": {}
+  },
+  "889276544760021062": {
+    "casinophil": {
+      "tokens": 1000,
+      "dailycooldown": 0
+    },
+    "inventory": []
+  },
+  "283041863995359234": {
+    "casinophil": {
+      "tokens": 999,
+      "dailycooldown": 0
+    },
+    "inventory": []
+  }
+}

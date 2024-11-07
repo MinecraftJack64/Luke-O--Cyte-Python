@@ -60,6 +60,12 @@ class Moderation(commands.Cog):
     async def addrole(self, ctx: commands.Context, member : discord.Member, role : discord.Role):
         await member.add_roles(role)
         await ctx.send("Added role")
+
+    @commands.hybrid_command(help="Remove a role from a member(admins use only)", brief="Remove role from someone")
+    @commands.has_permissions(administrator = True)
+    async def removerole(self, ctx: commands.Context, member : discord.Member, role : discord.Role):
+        await member.remove_roles(role)
+        await ctx.send("Rem role")
     
     @commands.hybrid_command(help="Give a role to a member(admins use only)", brief="Give role to someone")
     @commands.has_permissions(administrator = True)

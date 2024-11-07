@@ -29,28 +29,29 @@ tmp = []
         dailyclaims[x.split(" ")[0]] = float(x.split(" ")[2])
         dat[x.split(" ")[0]] = {"casinophil":{"tokens":int(x.split(" ")[1]),"dailycooldown":float(x.split(" ")[2])}}
 '''
-with open('DMStat.txt', 'r') as file:
+'''with open('DMStat.txt', 'r') as file:
     tmp = [line.rstrip() for line in file]
     for x in tmp:
         dms[x.split(" ")[0]] = x.split(" ")[1]
         if not x.split(" ")[0] in dat:
             dat[x.split(" ")[0]]={}
-        dat[x.split(" ")[0]]['dm'] = {"status": x.split(" ")[1]}
+        dat[x.split(" ")[0]]['dm'] = {"status": x.split(" ")[1]}'''
 
 #print(dat)
 
-def save_dm_state():
+'''def save_dm_state():
     f = open('DMStat.txt', 'w')
     for x in dms:
         f.write(x+" "+dms[x]+"\n")
     f.close()
-save_state()
+save_state()'''
 #print(dms)
 #The below code verifies the "client".
 def getg(n):
     ultrag = ['Alina', 'Audrey', 'Bruce', 'Jack', 'Lizzie', 'Mikayla', 'Rachel', 'Riley', 'Olric', 'Scholly', 'Stanley', 'Victor']
-    g = ['Alina', 'Audrey', 'Lizzie', 'Mikayla', 'Rachel', 'Scholly', 'Maddie', 'Jason', 'Wilson', 'Justin', 'Preston', 'Max']
+    g = ['Ariana', 'Ava', 'Gisselle', 'Cornelius', 'Chalice', 'Darryl', 'Melody', 'Benjamin', 'Alina', 'Audrey', 'Lizzie', 'Mikayla', 'Rachel', 'Scholly', 'Maddie', 'Jason', 'Wilson', 'Justin', 'Preston', 'Max', 'Bella']#, 'Yeseo', 'Bella']
     fg = []
+    #n = len(g)
     for x in range(n):
         i = random.randrange(0, len(g))
         fg.append(g.pop(i))
@@ -60,7 +61,20 @@ def getg(n):
         return fg[0]+" and "+fg[1]
     else:
         return ', '.join(fg[:len(fg)-1])+', and '+fg[len(fg)-1]
-def randstat():
+def gets(n):
+    s = ["Garden Island", "Glacier Island", "Fever Dream CLubhouse", "Plains of Bliss", "Carbon Labs", "Chromatican Shipwreck", "Chromatican Desert", "Cliffside Canyon", "Circus Island", "Euphoric Utopia", "Steampunk City", "Jungle Island", "Wave Wasteland", "Mineshaft Island", "Reef Island", "Quad Paradise", "Arcanic Anthem", "Chromatican Core", "Adamantine Foundry", "Lullaby Lagoon", "Box Delivery", "Valley of Stars", "Spinner of Terror", "Warehouse Island", "Bug Adventure", "Resurrection Temple", "Camp Catharsis", "Soil Museum", "Pond Parade", "Organic Rendezvous", "Gray Island", "Neonatural Core", "Titration Kingdom", "Breadboard Basin"]
+    fs = []
+    #n = len(g)
+    for x in range(n):
+        i = random.randrange(0, len(s))
+        fs.append(s.pop(i))
+    if n==1:
+        return fs[0]
+    elif n==2:
+        return fs[0]+" and "+fs[1]
+    else:
+        return ', '.join(fs[:len(fs)-1])+', and '+fs[len(fs)-1]
+def grandstat():
     t = random.randint(1,3)
     if t==1:
         return discord.Activity(type=discord.ActivityType.watching, name=getg(random.randint(1,3)))
@@ -70,20 +84,30 @@ def randstat():
         return discord.Game(name="with "+getg(random.randint(1,2)))
     else:
         return discord.Streaming(name=getg(random.randint(1,3)), url="")
-client = commands.Bot(command_prefix='+', intents = discord.Intents.all(), activity=randstat())
+def srandstat():
+    t = 2
+    if t==1:
+        return discord.Activity(type=discord.ActivityType.watching, name=gets(random.randint(1,3)))
+    elif t==2:
+        return discord.Activity(type=discord.ActivityType.listening, name=gets(1))
+    elif t==3:
+        return discord.Game(name="with "+gets(random.randint(1,2)))
+    else:
+        return discord.Streaming(name=gets(random.randint(1,3)), url="")
+client = commands.Bot(command_prefix='+', intents = discord.Intents.all(), activity=srandstat())
 @tasks.loop(minutes=2.0)
 async def statsetter():
     print('changed status')
-    await client.change_presence(activity=randstat())
+    await client.change_presence(activity=srandstat())
 #The below code stores the TOKEN.
 load_dotenv()
 botops = ["Luke O'Cyte", "Austie O'Cyte", "Lucy O'Cyte"]
 print('There are currently 3 bots available to boot:'+("".join(["\n"+str(x+1)+") "+botops[x] for x in range(len(botops))])))
-choise = input("Which bot do you choose? ")
+choise = "LUKE"#input("Which bot do you choose? ")
 TOKEN = os.getenv('DISCORD_TOKEN_'+choise)
 GUILD = os.getenv('DISCORD_GUILD')
 OWNER = os.getenv('DISCORD_OWNER')
-
+print(TOKEN)
 start = []
 end = []
 cpass = []
@@ -120,14 +144,14 @@ async def on_command_error(ctx, error):
 @client.command(help="Foo", brief="Foo")
 async def foo(ctx, arg):
     await ctx.send(arg)
-@client.event
+'''@client.event
 async def on_member_join(member):
     await member.create_dm()
     await member.dm_channel.send(
         f"Hi {member.name}, I am Luke O'Cyte! Welcome to the server!(message *opt in* to interact with me in dms)"
     )
     dms[str(member.id)] = 'optout'
-
+'''
 @client.tree.command(name="createinvite")
 @app_commands.describe(uses="uses", age="age")
 async def invite(interaction: discord.Interaction, age:int=0, uses:int=1):
@@ -168,6 +192,17 @@ async def uncast(interaction: discord.Interaction, id:int, mypass:str = ''):
     else:
         await interaction.response.send_message("Incorrect password", ephemeral=True)
 
+#1124525685529137314
+@commands.hybrid_command(name="feelz")
+async def feelz(ctx):
+    await ctx.channel.send("feelz")
+    time.sleep(1)
+    await ctx.channel.send("esketit")
+
+@commands.hybrid_command(name="react")
+async def react(ctx, id: int):
+    await client.get_message(ctx.channel, id)
+
 @client.tree.command(name="nick")
 @app_commands.describe(name = "Name to change to")
 async def nick(interaction: discord.Interaction, name:str):
@@ -175,9 +210,30 @@ async def nick(interaction: discord.Interaction, name:str):
     print(interaction.user.id)
     if str(interaction.user.id) == str(OWNER):
         await interaction.guild.me.edit(nick=name)
-        await interaction.response.send_message("Nickname changed")
+        await interaction.response.send_message("Nickname changed", ephemeral=True)
     else:
         await interaction.response.send_message("You can't tell me who I am!")
+@client.tree.command(name="refreshschedule")
+async def nick(interaction: discord.Interaction):
+    print(OWNER)
+    print(interaction.user.id)
+    if str(interaction.user.id) == str(OWNER):
+        await client.change_presence(activity=srandstat())
+        await interaction.response.send_message("Schedule refreshed", ephemeral=True)
+    else:
+        await interaction.response.send_message("You can't tell me what to do!")
+
+@client.tree.command(name="search")
+@app_commands.describe(query = "Query to search for")
+async def search(interaction: discord.Interaction, query:str):
+    hs = interaction.channel.history(limit=5000)
+    print(hs)
+    channelhistory = [h async for h in hs]
+    print(channelhistory)
+    for x in channelhistory:
+        print(x.content)
+        if query.lower() in x.content.lower():
+            await interaction.response.send_message(x.content, ephemeral=True)
 
 @client.tree.command(name="poll")
 async def poll(interaction: discord.Interaction, name:str, description:str, type:str = "public", votelimit:int = -1, hidevotes:bool = False):
@@ -235,7 +291,7 @@ async def poll(interaction: discord.Interaction, name:str, description:str, type
     await interaction.response.send_message(embed=embed, view=view)
 
 @client.event
-async def on_message(message):
+async def on_message(message: discord.Message):
     global dec
     member = message.author
     if message.author == client.user:
@@ -243,10 +299,14 @@ async def on_message(message):
     if message.channel in start:
         for x in end[start.index(message.channel)]:
             await x.send(message.content)
+    if "alina" in message.content.lower():
+        res = message.content.lower().replace("alina", "<redacted>")
+        print("Redact triggered"+res)
+        await message.edit(content=res)
     if message.author.name == "Abdullah XV" and '*' in message.content:
         pass
-    if not str(member.id) in dms:
-        pass
+    '''if not str(member.id) in dms:
+        pass'''
     if "Hey" in message.content and not '#' in message.content:
         await message.channel.send("Hey, "+str(message.author)+"!")
     if "gn" in message.content and len(message.content) == 2:
@@ -311,4 +371,5 @@ async def main():
         await load_extensions()
         await client.start(TOKEN)
 asyncio.run(main())
+#print(TOKEN+' = TOKEN')
 client.run(TOKEN)

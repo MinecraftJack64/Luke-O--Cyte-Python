@@ -37,6 +37,7 @@ class Gambling(commands.Cog):
         self._last_member = None
     def bank(self, member):
         print("checking membership")
+        checkuser(member)
         if not "casinophil" in dat[str(member.id)]:
             dat[str(member.id)]['casinophil'] = {"tokens":1000,"dailycooldown":0}
             print(member.name+" has joined the casinophil!")
